@@ -1,6 +1,5 @@
 {
   "extraBabelPlugins":[
-    "transform-decorators-legacy",
     ["import", { "libraryName": "antd", "libarayDirectory": "lib", "style": "css" }]
   ]
 }

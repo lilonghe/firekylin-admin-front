@@ -13,6 +13,7 @@ const { Content, Footer, Sider } = Layout
 
 export default class MainLayout extends Component {
   render() {
+    const { children } = this.props;
     return (
       <div>
         {/* <Loader fullScreen /> */}
@@ -28,7 +29,7 @@ export default class MainLayout extends Component {
             <BackTop target={() => document.getElementById('mainContainer')} />
             <Header />
             <Content>
-              {/* <Bread /> */}
+              {children}
             </Content>
             <Footer >
               {/* {config.footerText} */}

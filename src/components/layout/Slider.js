@@ -11,7 +11,7 @@ export default class Sider extends Component {
     return (
       <div>
         <div className={styles.logo}>
-          <img alt="logo" />
+          <img alt="logo" src={'https://antd-admin.zuiidea.com/public/logo.svg'} />
           <span>{'xxx'}</span>
         </div>
         <Menu mode='inline' selectedKeys={['xxx']}>
