@@ -7,16 +7,20 @@ const { SubMenu } = Menu
 
 export default class Header extends Component {
   render() {
+    const { user } = this.props;
+    if(!user) {
+      return <div></div>;
+    }
     return (
       <Layout.Header className={styles.header}>
         <div
           className={styles.button}>
-          <Icon type={'menu-unfold'} />
+          {/* <Icon type={'menu-unfold'} /> */}
         </div>
         <div className={styles.rightWarpper}>
-          <div className={styles.button}>
+          {/* <div className={styles.button}>
             <Icon type="mail" />
-          </div>
+          </div> */}
           <Menu mode="horizontal">
             <SubMenu
               style={{
@@ -24,11 +28,11 @@ export default class Header extends Component {
               }}
               title={<span>
                 <Icon type="user" />
-                {/* {user.username} */}
+                {user.name}
               </span>}
             >
               <Menu.Item key="logout">
-                Sign out
+                <a href="/admin/user/logout">退出</a>
               </Menu.Item>
             </SubMenu>
           </Menu>

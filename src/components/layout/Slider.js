@@ -8,18 +8,19 @@ const MenuItem = Menu.Item;
 
 export default class Sider extends Component {
   render() {
+    const { options } = this.props;
+    if (!options) return <div></div>
     return (
       <div>
         <div className={styles.logo}>
-          <img alt="logo" src={'https://antd-admin.zuiidea.com/public/logo.svg'} />
-          <span>{'xxx'}</span>
+          <img alt="logo" src={options.logo_url} />
+          <span>{options.title}</span>
         </div>
-        <Menu mode='inline' selectedKeys={['xxx']}>
-          <MenuItem key='xxx'>xxx</MenuItem>
-          <MenuItem>agefegrg34</MenuItem>
-          <MenuItem>xcv3242f</MenuItem>
-          <MenuItem>32r2fwvwvw</MenuItem>
-          <MenuItem>wef432</MenuItem>
+        <Menu mode='inline' selectedKeys={['dashboard']}>
+          <MenuItem key='dashboard'><Icon type="home" />概览</MenuItem>
+          <MenuItem key='post'><Icon type="file-text" />文章管理</MenuItem>
+          <MenuItem key='cate'><Icon type="folder" />分类管理</MenuItem>
+          <MenuItem key='options'><Icon type="setting" />系统设置</MenuItem>
         </Menu>
       </div>
     )
