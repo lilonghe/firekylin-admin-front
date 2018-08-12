@@ -68,7 +68,7 @@ export default class IndexPage extends Component {
 
         <Card title='最近文章' className={styles.summaryCard} style={{width: 500, clear: 'both'}}>
           {lastest.map(item => {
-            return <li>
+            return <li key={item.id}>
               <label style={{marginRight: 10}}>{item.create_time}</label>
               <a href={`/post/${item.pathname}`}>{item.title}</a>
             </li>

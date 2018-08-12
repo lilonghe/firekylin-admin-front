@@ -10,13 +10,9 @@ import Header from '../components/layout/Header';
 import MySider from '../components/layout/Slider';
 import LoadingHold from '../components/helper/LoadingHold';
 import LoginPage from '../routes/LoginPage';
-
 const { Content, Footer, Sider } = Layout
 
-@connect(({ session, system }) => {
-  return { session, system };
-})
-export default class MainLayout extends Component {
+class MainLayout extends Component {
   componentDidMount() {
     const { system: { summary }, session: { user }, dispatch } = this.props;
     if (window.SysConfig.userInfo.name) {
@@ -63,10 +59,15 @@ export default class MainLayout extends Component {
               {(options && summary) ? children : <LoadingHold />}
             </Content>
             <Footer >
-              {/* {config.footerText} */}
             </Footer>
           </Layout>
         </Layout>
     )
   }
 }
+
+function mapStateToProps({session, system }) {
+  return {session, system};
+}
+
+export default withRouter(connect(mapStateToProps)(MainLayout));

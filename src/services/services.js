@@ -11,3 +11,7 @@ export function fetchSystemSummary() {
 export function fetchLastPost() {
   return request('api/post?type=lastest');
 }
+
+export function fetchListPost(params) {
+  return request('api/post', { query: params });
+}

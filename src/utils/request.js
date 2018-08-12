@@ -40,6 +40,11 @@ export default function request(url, options={}) {
     options.body = queryString.stringify(options.form);
     delete options.form;
   }
+  if (options.query) {
+    url += "?" + queryString.stringify(options.query);
+    delete options.query;
+  }
+
   return fetch(baseUrl + url, options)
     .then(checkStatus)
     .then(parseJSON)
