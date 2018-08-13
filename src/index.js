@@ -14,6 +14,7 @@ const app = dva({
 app.model(require('./models/session').default);
 app.model(require('./models/system').default);
 app.model(require('./models/post').default);
+app.model(require('./models/cate').default);
 
 // 4. Router
 app.router(require('./router').default);

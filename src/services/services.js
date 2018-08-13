@@ -15,3 +15,7 @@ export function fetchLastPost() {
 export function fetchListPost(params) {
   return request('api/post', { query: params });
 }
+
+export function fetchListCate() {
+  return request('api/cate');
+}
