@@ -6,16 +6,18 @@ import styles from './Header.less'
 const { SubMenu } = Menu
 
 export default class Header extends Component {
+
   render() {
-    const { user } = this.props;
+    const { user, collapsed } = this.props;
     if(!user) {
       return <div></div>;
     }
     return (
       <Layout.Header className={styles.header}>
         <div
+          onClick={this.props.toggleSlider}
           className={styles.button}>
-          {/* <Icon type={'menu-unfold'} /> */}
+          <Icon className="trigger" type={collapsed ? 'menu-unfold' : 'menu-fold'} />
         </div>
         <div className={styles.rightWarpper}>
           {/* <div className={styles.button}>

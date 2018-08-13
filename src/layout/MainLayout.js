@@ -1,8 +1,4 @@
-/* global window */
-/* global document */
 import React, { Component } from 'react'
-import NProgress from 'nprogress'
-import pathToRegexp from 'path-to-regexp'
 import { connect } from 'dva'
 import { BackTop, Layout, Spin } from 'antd'
 import { withRouter } from 'dva/router'
@@ -13,6 +9,16 @@ import LoginPage from '../routes/LoginPage';
 const { Content, Footer, Sider } = Layout
 
 class MainLayout extends Component {
+  state = {
+    collapsed: false
+  }
+
+  toggleSlider = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
+
   componentDidMount() {
     const { system: { summary }, session: { user }, dispatch } = this.props;
     if (window.SysConfig.userInfo.name) {
@@ -48,15 +54,18 @@ class MainLayout extends Component {
           <Sider
             trigger={null}
             collapsible
+            collapsed={this.state.collapsed}
             theme={'light'}
           >
             <MySider options={options} />
           </Sider>
           <Layout style={{ height: '100vh', overflow: 'scroll' }} id="mainContainer">
             <BackTop target={() => document.getElementById('mainContainer')} />
-            <Header user={user} />
+            <Header user={user} toggleSlider={this.toggleSlider} />
             <Content>
-              {(options && summary) ? children : <LoadingHold />}
+              <div style={{backgroundColor: '#FFF', padding: 10, minheight: 'calc(100vh - 164px)'}}>
+                {(options && summary) ? children : <LoadingHold />}
+              </div>
             </Content>
             <Footer >
             </Footer>
