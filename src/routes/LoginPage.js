@@ -31,7 +31,7 @@ export default class LoginPage extends Component {
     return (
       <div className={styles.form}>
         <div className={styles.logo}>
-        <img alt="logo" src={options.logo_url} />
+        {/* <img alt="logo" src={options.logo_url} /> */}
         <span>{options.title}</span>
       </div>
       <Form onSubmit={this.handleSumit}>

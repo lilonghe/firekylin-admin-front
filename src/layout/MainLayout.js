@@ -67,8 +67,7 @@ class MainLayout extends Component {
                 {(options && summary) ? children : <LoadingHold />}
               </div>
             </Content>
-            <Footer >
-            </Footer>
+            <Footer />
           </Layout>
         </Layout>
     )

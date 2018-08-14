@@ -1,4 +1,6 @@
-import { login, fetchSystemSummary } from '../services/services';
+import { fetchSystemSummary, updateOptions } from '../services/services';
+import { message } from 'antd';
+
 export default {
   namespace: 'system',
   state: {
@@ -21,6 +23,19 @@ export default {
         })
       }
     },
+    *updateOptions({payload}, {call, put, select}) {
+      const { err } = yield call(updateOptions, payload);
+      if (!err) {
+        message.success('更新成功');
+        const { options } = yield select(state => state.system);
+        yield put({
+          type: 'save',
+          payload: {
+            options: {...options, ...payload}
+          }
+        })
+      }
+    }
   },
   reducers: {
     save(state, action) {

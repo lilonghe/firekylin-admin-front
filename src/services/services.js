@@ -19,3 +19,7 @@ export function fetchListPost(params) {
 export function fetchListCate() {
   return request('api/cate');
 }
+
+export function updateOptions(params) {
+  return request('api/options?method=put', { form: params, method: 'post' });
+}

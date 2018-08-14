@@ -5,6 +5,7 @@ import MainLayout from './layout/MainLayout';
 import PostListPage from './routes/post/ListPage';
 import NotFound from './components/helper/404';
 import CateListPage from './routes/cate/ListPage';
+import OptionsGeneralPage from './routes/options/GeneralPage';
 
 function RouterConfig({ history }) {
   return (
@@ -15,6 +16,7 @@ function RouterConfig({ history }) {
             <Route path="/admin/dashboard" exact component={IndexPage} />
             <Route path="/admin/post/list" exact component={PostListPage} />
             <Route path="/admin/cate/list" exact component={CateListPage} />
+            <Route path="/admin/options/general" exact component={OptionsGeneralPage} />
             <Redirect exact from='/admin' to="/admin/dashboard" />
             <Route component={NotFound} />
         </Switch>
