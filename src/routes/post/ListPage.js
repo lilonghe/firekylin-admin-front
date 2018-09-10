@@ -29,7 +29,8 @@ export default class IndexPage extends Component {
     const { post: { list, pageSize, totalPages } } = this.props;
     return (
       <Fragment>
-        <div></div>
+        <div>
+        </div>
 
         <Table
           rowKey={row => row.id}
