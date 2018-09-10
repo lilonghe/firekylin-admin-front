@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react'
-import { Form, connect, Input } from 'antd';
-import LzEditor from 'react-lz-editor';
+import { Form, connect, Input, Button } from 'antd';
+//import LzEditor from 'react-lz-editor';
+//import ReactMarkdown from 'react-markdown';
 import marked from 'marked'
+import ReactMde from 'react-mde';
+import 'react-mde/lib/styles/css/react-mde-all.css';
 
 const FormItem = Form.Item;
 
@@ -10,7 +13,15 @@ export default class AddPage extends PureComponent {
 
   state = {
     markedContent: '',
-    htmlContent: ''
+    htmlContent: '',
+    mdeState: null,
+    publishType: 'draft'
+  }
+
+  changePublishType = (type) => {
+    this.setState({
+      publishType: type
+    })
   }
 
   rcMarkedContent = (content) => {
@@ -21,18 +32,26 @@ export default class AddPage extends PureComponent {
     })
   }
 
+  handleChange = (mdeState) => {
+    this.setState({
+      mdeState
+    })
+  }
+
   handleSumit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.dispatch({
-          type: 'session/login',
-          payload: {
+        console.log(values, this.state.mdeState);
+        console.log(this.state.publishType)
+        //this.props.dispatch({
+        //  type: 'session/login',
+        //  payload: {
             // username: values.username,
             // oripassword: values.password,
             // password: md5(window.SysConfig.options.password_salt + values.password)
-          }
-        })
+        //  }
+        //})
       }
     });
   }
@@ -55,19 +74,20 @@ export default class AddPage extends PureComponent {
       wrapperCol: {
         xs: {
           span: 24,
-          offset: 0,
+          offset: 4,
         },
         sm: {
           span: 16,
-          offset: 8,
+          offset: 2,
         },
       },
     };
 
 
+
+
     return (
       <div>
-
         <Form onSubmit={this.handleSumit}>
           <FormItem {...formItemLayout} label='标题'>
             {getFieldDecorator('title', {
@@ -92,20 +112,18 @@ export default class AddPage extends PureComponent {
               <span>.html</span>
             </div>)}
           </FormItem>
-
-          <div style={{display: 'flex'}}>
-              <div style={{flex: 1}}>
-                <LzEditor
-                  convertFormat='markdown'
-                  cbReceiver={this.rcMarkedContent} />
-              </div>
-
-              <div  style={{flex: 1}} dangerouslySetInnerHTML={{__html: this.state.htmlContent}}>
-
-              </div>
-          </div>
-
+          <FormItem {...tailFormItemLayout}>
+            <Button onClick={() => this.changePublishType('draft')} type="primary" htmlType="submit">保存草稿</Button>
+            <Button onClick={() => this.changePublishType('public')} style={{ marginLeft:10 }} type="primary" htmlType="submit">发布文章</Button>
+          </FormItem>
         </Form>
+        <div style={{ lineHeight: 1.2 }} onClick={e => { e.stopPropagation(); return; }}>
+          <ReactMde
+            layout={'tabbed'}
+            editorState={this.state.mdeState}
+            onChange={this.handleChange}
+            generateMarkdownPreview={(markdown) => Promise.resolve(marked(markdown))} />
+        </div>
       </div>
     )
   }
