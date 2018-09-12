@@ -23,3 +23,11 @@ export function fetchListCate() {
 export function updateOptions(params) {
   return request('api/options?method=put', { form: params, method: 'post' });
 }
+
+export function fetchListTag() {
+  return request('api/tag');
+}
+
+export function createPost(params) {
+  return request('api/post', { form: params, method: 'post' });
+}

@@ -64,7 +64,8 @@ class MainLayout extends Component {
             <Header user={user} toggleSlider={this.toggleSlider} />
             <Content>
               <div style={{backgroundColor: '#FFF', padding: 10, minheight: 'calc(100vh - 164px)'}}>
-                {(options && summary) ? children : <LoadingHold />}
+                {/* {(options && summary) ? children : <LoadingHold />} */}
+                {children}
               </div>
             </Content>
             <Footer />

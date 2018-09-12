@@ -3,7 +3,7 @@ import FormData  from 'form-data';
 import queryString from 'query-string';
 import { message } from 'antd';
 
-const baseUrl = "/admin/"
+const baseUrl = "https://note.lilonghe.net/admin/"
 
 function parseJSON(response) {
   return response.json();
